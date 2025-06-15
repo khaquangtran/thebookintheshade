@@ -16,16 +16,18 @@ export default function FileRenderer() {
 
     for (let i = 1; i < numPages; i += 2) {
       pages.push(
-        <div className="flex items-center px-20" key={`page_${i}`}>
+        <div className="w-full grid grid-cols-2" key={`page_${i}`}>
           <Page
             pageNumber={i}
             renderAnnotationLayer={true}
             renderTextLayer={true}
+            width={window.innerWidth / 2}
           />
           <Page
             pageNumber={i + 1}
             renderAnnotationLayer={true}
             renderTextLayer={true}
+            width={window.innerWidth / 2}
           />
         </div>
       )
@@ -37,11 +39,11 @@ export default function FileRenderer() {
   if (!file) return null
 
   return (
-    <div className="p-20 flex items-center justify-center">
+    <div>
       <Document
         file={file}
         onLoadSuccess={onLoadSuccess}
-        className="filter invert hue-rotate-180"
+        className="filter invert hue-rotate-180 w-full"
       >
         {onRender(numPages)}
       </Document>
